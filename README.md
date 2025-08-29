@@ -32,20 +32,9 @@ A dynamic planogram (POG) mock application built with **React** and **TypeScript
 
 Pog Mock allows users to interact with a visual planogram of products. Clicking a cell opens an overlay, showing product details, and users can report a POG issue by taking a screenshot of the planogram with the selected cell highlighted.
 
----
-
-## Table of Contents
-
-1. [Overview](#-overview)  
-2. [Features](#features)  
-3. [Setup & Installation](#-setup--installation)  
-4. [License](#-license)  
-
----
-
 ## 🌟 Overview
 
-Pog Mock is designed to help visualize product layouts in a planogram. Its features include a dynamic grid of cells, clickable product images, and a POG Issue reporting system that allows for capturing screenshots with highlighted items.  
+Pog Mock is designed to help visualize product layouts in a mock planogram. Its features include a POG Issue reporting system that allows for capturing screenshots with highlighted items.  
 
 ---
 
