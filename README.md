@@ -11,7 +11,6 @@
         <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
     </a>
 </div>
-<img width="1916" height="912" alt="image" src="https://github.com/user-attachments/assets/e42702fa-b344-47c2-b51e-17f2cf356ec7" />
 # Pog Mock
 
 A dynamic planogram (POG) mock application built with **React** and **TypeScript**. Click on cells to view product details, report POG issues, and download screenshots highlighting selected items.  
@@ -19,8 +18,7 @@ A dynamic planogram (POG) mock application built with **React** and **TypeScript
 ---
 
 ## Homepage
-![Planogram](./assets/planogram.png)
-*Main planogram grid with clickable cells.*
+<img width="1916" height="912" alt="image" src="https://github.com/user-attachments/assets/e42702fa-b344-47c2-b51e-17f2cf356ec7" />
 
 ## Overlay View
 ![Overlay](./assets/overlay.png)
