@@ -50,34 +50,10 @@ Pog Mock is designed to help visualize product layouts in a planogram. Its featu
 ---
 
 ## Features
-
-### Dynamic Planogram Grid
-- Configurable rows and columns.
-- Cells can display product images or identifiers.
-
-### Overlay Details
-- Click on a cell to open an overlay showing product details.
-- Overlay includes the clicked product image and POG Issue button.
-
 ### POG Issue Reporting
 - Capture a screenshot of the planogram (without overlay).
 - Draw a red bounding box around the selected item.
 - Download the screenshot for reporting.
 
-### Responsive Design
-- Layout adapts to screen size and planogram dimensions.
 
 ---
-
-## 🛠️ Setup & Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/pog-mock.git
-cd pog-mock
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
