@@ -1,5 +1,6 @@
 <div align="center">
-    <img width="35%" src="./public/images/logo.png">
+    <img width="1916" height="912" alt="image" src="https://github.com/user-attachments/assets/e42702fa-b344-47c2-b51e-17f2cf356ec7" />
+
     <h1>Pog Mock</h1>
     <a href="#">
         <img alt="Live Demo" src="https://img.shields.io/badge/demo-online-green.svg">
