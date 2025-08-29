@@ -2,37 +2,92 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.super-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100vh;
+  background-color: #282c34;
   color: white;
+  font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: #61dafb;
+.plano {
+  position: relative; /* important: overlay is relative to this */
+  width: 30%;
+  max-width: 1200px;
+  height: 80vh;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  overflow: hidden; /* prevent overlay from spilling outside */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.data-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.data-table td {
+  border-bottom: 1px solid #000000;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clickable-cell {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.clickable-cell:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 100%;           /* start off-screen right */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(153, 151, 151, 0.897);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.5s ease; /* sliding effect */
+  z-index: 10;          /* on top of planogram */
+}
+
+/* When active, slide over */
+.overlay.active {
+  left: 0;
+}
+
+.overlay-content {
+  text-align: center;
+  color: black;
+}
+
+.overlay button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.cell-image {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  pointer-events: none;
 }
