@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import DataTable from "./DataTable";
+import POGIssue from "./POGIssue";
 
 const App: React.FC = () => {
   const [clickedCell, setClickedCell] = useState<{
@@ -8,6 +9,7 @@ const App: React.FC = () => {
     col: number;
     image: string;
   } | null>(null);
+
 
   const handleCellClick = (row: number, col: number, image: string) => {
     setClickedCell({ row, col, image });
@@ -41,6 +43,14 @@ const App: React.FC = () => {
               </>
             )}
             <button onClick={handleBack}>Back</button>
+            <POGIssue
+              planoSelector=".plano"
+              clickedCell={clickedCell ? { row: clickedCell.row, col: clickedCell.col } : null}
+              rows={4}
+              cols={5}
+            />
+          </div>
+          <div className="overlay-bg" onClick={handleBack}>
           </div>
         </div>
       </div>
