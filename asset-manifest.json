@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/pog-mock/static/css/main.e1d8c756.css",
+    "main.js": "/pog-mock/static/js/main.4310f06d.js",
+    "static/js/453.e0d71e48.chunk.js": "/pog-mock/static/js/453.e0d71e48.chunk.js",
+    "static/media/product2.png": "/pog-mock/static/media/product2.4476269e62598c7d9d63.png",
+    "static/media/product1.png": "/pog-mock/static/media/product1.a9ea4696e00383dcc5cf.png",
+    "static/media/product3.png": "/pog-mock/static/media/product3.26281e25a86e54b4a6b1.png",
+    "index.html": "/pog-mock/index.html",
+    "main.e1d8c756.css.map": "/pog-mock/static/css/main.e1d8c756.css.map",
+    "main.4310f06d.js.map": "/pog-mock/static/js/main.4310f06d.js.map",
+    "453.e0d71e48.chunk.js.map": "/pog-mock/static/js/453.e0d71e48.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e1d8c756.css",
+    "static/js/main.4310f06d.js"
+  ]
+}
