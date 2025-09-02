@@ -1,9 +1,12 @@
 import React from "react";
+import product1 from "./products/product1.png";
+import product2 from "./products/product2.png";
+import product3 from "./products/product3.png";
 
 const images = [
-  "/products/product1.png",
-  "/products/product2.png",
-  "/products/product3.png"
+  product1,
+  product2,
+  product3,
 ];
 
 interface DataTableProps {
