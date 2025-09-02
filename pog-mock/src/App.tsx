@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     <div className="super-container">
       <div className="header">
-        <h1>Welcome to Pog Mock!</h1>
+        <h1>Welcome to POG Mock!</h1>
       </div>
 
       <div className="plano">
