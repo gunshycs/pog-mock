@@ -26,7 +26,7 @@ const App: React.FC = () => {
       <div className="plano">
         <DataTable rows={4} cols={5} onCellClick={handleCellClick} />
 
-        {/* Overlay is always in DOM; active class toggles slide */}
+        {/*overlay is always in DOM; active class toggles slide */}
         <div className={`overlay ${clickedCell ? "active" : ""}`}>
           <div className="overlay-content">
             {clickedCell && (
