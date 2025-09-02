@@ -21,11 +21,11 @@ A dynamic planogram (POG) mock application built with **React** and **TypeScript
 <img width="1916" height="912" alt="image" src="https://github.com/user-attachments/assets/e42702fa-b344-47c2-b51e-17f2cf356ec7" />
 
 ## Overlay View
-![Overlay](./assets/overlay.png)
+<img width="1850" height="934" alt="image" src="https://github.com/user-attachments/assets/fd4281d3-50bf-408c-8dc2-d3640a3c54bb" />
 *Overlay showing clicked product with POG Issue button.*
 
 ## POG Issue Screenshot
-![Bounding Box](./assets/bounding-box.png)
+<img width="1850" height="934" alt="image" src="https://github.com/user-attachments/assets/081be72e-e80a-4079-994e-9fc405536206" />
 *Screenshot captured with red bounding box around selected cell.*
 
 ---
