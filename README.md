@@ -1,5 +1,5 @@
 <div align="center">
-    # [POG Mock](https://gunshycs.github.io/pog-mock/)
+    ## [POG Mock](https://gunshycs.github.io/pog-mock/)
     <a href="#">
         <img alt="Live Demo" src="https://img.shields.io/badge/demo-online-green.svg">
     </a>
