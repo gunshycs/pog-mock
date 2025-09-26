@@ -3,23 +3,28 @@ import "../pogReview.css";
 import { usePogStore } from "../store/pogStore";
 
 interface POGReviewProps {
-  onClose?: () => void; // optional prop
+  onClose?: () => void;
 }
 
 const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
   const issueData = usePogStore((state) => state.issueData);
-  const setIssueData = usePogStore((state) => state.setIssueData);
+  const updateIssueData = usePogStore((state) => state.updateIssueData);
   const clearIssue = usePogStore((state) => state.clearIssue);
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [step, setStep] = useState<number>(0);
-  const [badgeInImage, setBadgeInImage] = useState<string | null>(null);
-  const [cartImage, setCartImage] = useState<string | null>(null);
+  const [badgeInImage, setBadgeInImage] = useState<string>("");
+  const [cartImage, setCartImage] = useState<string>("");
   const [storeName, setStoreName] = useState<string>("");
   const [reviewerName, setReviewerName] = useState<string>("");
 
   useEffect(() => {
     if (issueData) {
+      //initialize local state from existing issueData
+      setBadgeInImage(issueData.badgeInImage || "");
+      setCartImage(issueData.cartImage || "");
+      setStoreName(issueData.storeName || "");
+      setReviewerName(issueData.reviewerName || "");
       requestAnimationFrame(() => setIsOpen(true));
     }
   }, [issueData]);
@@ -28,30 +33,27 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
 
   const handleClose = () => {
     setIsOpen(false);
-    if (onClose) onClose(); // call parent close function
+    if (onClose) onClose();
   };
 
   const handleTransitionEnd = () => {
     if (!isOpen) {
-      clearIssue();
     }
   };
 
   const handleNext = () => setStep((s) => Math.min(s + 1, 2));
-  const handleBack = () => setStep((s) => Math.max(s - 1, 1));
+  const handleBack = () => setStep((s) => Math.max(s - 1, 0));
 
   const handleConfirm = () => {
-    setIssueData({
-      ...issueData,
-      badgeInImage: badgeInImage || "",
-      cartImage: cartImage || "",
-      storeMeta: {
-        storeName,
-        reviewerName,
-      },
+    updateIssueData({
+      badgeInImage,
+      cartImage,
+      storeName,
+      reviewerName,
     });
     alert("Issue data saved!");
-    handleClose(); // close modal after saving
+    console.log("Saved Issue Data:", { issueData })
+    handleClose();
   };
 
   return (
@@ -90,14 +92,19 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
             <p>Meta Data Section</p>
             <li>ProductName: {issueData.productName}</li>
             <li>ProductUPC: {issueData.productUPC}</li>
-            <li>Store Name: {issueData.storeMeta.storeName}</li>
+            <li>Store: {issueData.storeName}</li>
+            <li>Reviewer's Name: {issueData.reviewerName}</li>
           </ul>
         )}
 
         <div className="review-buttons">
-          {(step === 1 || step === 2) && <button onClick={handleBack}>Back</button>}
+          {(step === 1 || step === 2) && (
+            <button onClick={handleBack}>Back</button>
+          )}
           {step < 2 && <button onClick={handleNext}>Next</button>}
-          {step === 2 && <button onClick={handleConfirm}>Confirm & Save</button>}
+          {step === 2 && (
+            <button onClick={handleConfirm}>Confirm & Save</button>
+          )}
         </div>
       </div>
     </div>

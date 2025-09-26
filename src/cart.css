@@ -1,0 +1,80 @@
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: rgba(35, 55, 107, 0.562);
+  border-left: 1px solid black;
+  z-index: 0;
+  overflow: hidden; /* disable main scroll */
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Main container for sections */
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px); /* leaves space for h3 */
+}
+
+/* 1/5 height */
+.init-info {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+/* 2/5 height */
+.badge-in-images {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+}
+
+/* badge list styling */
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* horizontal centering of images */
+  align-items: center;
+  gap: 10px;               /* spacing between images */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* image sizing */
+.badge-image {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* 2/5 height, scrollable if content exceeds */
+.cart {
+  flex: 2;
+  margin: 10px;
+}

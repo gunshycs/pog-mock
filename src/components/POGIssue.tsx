@@ -1,4 +1,3 @@
-// src/components/POGIssue.tsx
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import POGReview from "./POGReview";
@@ -7,7 +6,7 @@ import { usePogStore } from "../store/pogStore";
 const POGIssue: React.FC = () => {
   const clickedCell = usePogStore((state) => state.clickedCell);
   const issueData = usePogStore((state) => state.issueData);
-  const setIssueData = usePogStore((state) => state.setIssueData);
+  const updateIssueData = usePogStore((state) => state.updateIssueData);
   const [preview, setPreview] = useState<string | null>(null);
 
   const handlePOGIssue = async () => {
@@ -33,15 +32,6 @@ const POGIssue: React.FC = () => {
 
         if (cell) {
           const rect = cell.getBoundingClientRect();
-          const planoRect = planoDiv.getBoundingClientRect();
-
-          console.log(
-            "cell size (x, y, w, h): ",
-            rect.x,
-            rect.y,
-            rect.width,
-            rect.height
-          );
 
           ctx.strokeStyle = "red";
           ctx.lineWidth = 5;
@@ -52,17 +42,11 @@ const POGIssue: React.FC = () => {
       const imgURL = canvas.toDataURL("image/png");
       setPreview(imgURL);
 
-      //save to zustand global
-      setIssueData({
+      //update some of the issue data
+      updateIssueData({
         planogramImage: imgURL,
         productName: clickedCell.productName,
         productUPC: clickedCell.productUPC,
-        badgeInImage: "",
-        cartImage: "",
-        storeMeta: {
-          storeName: '',
-          reviewerName: "",
-        },
       });
     } finally {
       if (overlay && oldDisplay !== undefined)
@@ -75,7 +59,7 @@ const POGIssue: React.FC = () => {
       <button onClick={handlePOGIssue} disabled={!clickedCell}>
         POG Issue
       </button>
-      {/* Render the review component */}
+      {/* pop up the review component */}
       {issueData && <POGReview />}
     </div>
   );

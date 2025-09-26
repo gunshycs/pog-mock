@@ -1,1 +1,12 @@
- - Right now states error with updating store names and reviewer when updating at POGIssue.tsx
+ - Right now states error with updating store names
+   and reviewer when updating at POGIssue.tsx (FIXED 9/26 @4:03am)
+
+ - Connect the badge-in images in the zustand state.
+
+ - Take a screenshot of the cart div and save it into the zustand state.
+
+ - Do some extra styling for the side panel.
+
+ - Add a service api into smartsheet.
+
+ - Add a local data base to hold in reviewer POGIssues.
