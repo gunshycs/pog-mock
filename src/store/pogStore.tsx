@@ -16,10 +16,18 @@ interface ClickedCell {
   productUPC: string;
 }
 
+interface CartItemData {
+  upc: string;
+  name: string;
+  quantity?: number;
+}
+
 interface IssueData {
+  sessionId: string;
   planogramImage: string;
-  badgeInImage: string;
-  cartImage: string;
+  badgeInImages: string[];
+  confirmedBadgeInImage: string;
+  cartItems: CartItemData[];
   productName: string;
   productUPC: string;
   storeName: string;
@@ -39,9 +47,11 @@ interface POGState {
 export const usePogStore = create<POGState>((set) => ({
   clickedCell: null,
   issueData: {
+    sessionId: "",
     planogramImage: "",
-    badgeInImage: "",
-    cartImage: "",
+    badgeInImages: [],
+    confirmedBadgeInImage: "",
+    cartItems: [],
     productName: "",
     productUPC: "",
     storeName: "",
@@ -59,9 +69,11 @@ export const usePogStore = create<POGState>((set) => ({
     set({
       clickedCell: null,
       issueData: {
+        sessionId: "",
         planogramImage: "",
-        badgeInImage: "",
-        cartImage: "",
+        badgeInImages: [],
+        confirmedBadgeInImage: "",
+        cartItems: [],
         productName: "",
         productUPC: "",
         storeName: "",

@@ -3,42 +3,30 @@ import "../pogReview.css";
 import { usePogStore } from "../store/pogStore";
 
 interface POGReviewProps {
-  onClose?: () => void;
+  onClose?: () => void; // called when panel closes
 }
 
 const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
   const issueData = usePogStore((state) => state.issueData);
   const updateIssueData = usePogStore((state) => state.updateIssueData);
-  const clearIssue = usePogStore((state) => state.clearIssue);
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [step, setStep] = useState<number>(0);
-  const [badgeInImage, setBadgeInImage] = useState<string>("");
-  const [cartImage, setCartImage] = useState<string>("");
-  const [storeName, setStoreName] = useState<string>("");
-  const [reviewerName, setReviewerName] = useState<string>("");
+  const [isOpen, setIsOpen] = useState(false); // controls slide animation
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (issueData) {
-      //initialize local state from existing issueData
-      setBadgeInImage(issueData.badgeInImage || "");
-      setCartImage(issueData.cartImage || "");
-      setStoreName(issueData.storeName || "");
-      setReviewerName(issueData.reviewerName || "");
-      requestAnimationFrame(() => setIsOpen(true));
-    }
-  }, [issueData]);
+    // open panel after mount to trigger slide animation
+    requestAnimationFrame(() => setIsOpen(true));
+  }, []);
 
   if (!issueData) return null;
 
   const handleClose = () => {
-    setIsOpen(false);
-    if (onClose) onClose();
+    setIsOpen(false); // trigger slide-out
   };
 
   const handleTransitionEnd = () => {
-    if (!isOpen) {
-    }
+    // after sliding out, unmount panel
+    if (!isOpen && onClose) onClose();
   };
 
   const handleNext = () => setStep((s) => Math.min(s + 1, 2));
@@ -46,13 +34,13 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
 
   const handleConfirm = () => {
     updateIssueData({
-      badgeInImage,
-      cartImage,
-      storeName,
-      reviewerName,
+      confirmedBadgeInImage: issueData.confirmedBadgeInImage,
+      planogramImage: issueData.planogramImage,
+      productName: issueData.productName,
+      productUPC: issueData.productUPC,
     });
+    console.log(issueData);
     alert("Issue data saved!");
-    console.log("Saved Issue Data:", { issueData })
     handleClose();
   };
 
@@ -66,38 +54,71 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
       </button>
 
       <div className="pog-review-panel-items">
-        <h4>POG Issue Review</h4>
+        <h4 className="panel-header">POG Issue Review</h4>
 
-        {step === 0 && (
-          <div className="plano-sc-section">
-            <p>Planogram Screenshot</p>
-            {issueData.planogramImage && (
-              <img
-                src={issueData.planogramImage}
-                alt="Planogram"
-                className="planogram-image"
-              />
-            )}
-          </div>
-        )}
+        <div className="step-content">
+          {step === 0 && (
+            <div className="plano-sc-section">
+              <p>Planogram Screenshot</p>
+              {issueData.planogramImage && (
+                <img
+                  src={issueData.planogramImage}
+                  alt="Planogram"
+                  className="planogram-image"
+                />
+              )}
+            </div>
+          )}
+          {step === 1 && (
+            <div className="badge-in-image-section">
+              <p>Badge-In: Confirm Image</p>
+              <ul className="badge-list-review">
+                {issueData.badgeInImages?.map((img, idx) => (
+                  <li key={idx}>
+                    <img
+                      src={img}
+                      alt={`Badge In ${idx + 1}`}
+                      onClick={() =>
+                        updateIssueData({ confirmedBadgeInImage: img })
+                      }
+                      className={`badge-image ${
+                        issueData.confirmedBadgeInImage === img
+                          ? "selected"
+                          : ""
+                      }`}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {step === 2 && (
+            <ul className="meta-section">
+              <p>Meta Data Section</p>
+              <li>Session ID: {issueData.sessionId}</li>
+              <li>Product Name: {issueData.productName}</li>
+              <li>Product UPC: {issueData.productUPC}</li>
+              <li>Store: {issueData.storeName}</li>
+              <li>Reviewer's Name: {issueData.reviewerName}</li>
+              <p>Current Cart:</p>
+              <li>
+                {issueData.cartItems.length === 0 ? (
+                <p>No items in cart</p>
+              ) : (
+                <ul>
+                  {issueData.cartItems.map((item) => (
+                    <li key={item.upc}>
+                      {item.name} {item.quantity && `x${item.quantity}`}
+                    </li>
+                  ))}
+                </ul>
+                )}
+                </li>
+            </ul>
+          )}
+        </div>
 
-        {step === 1 && (
-          <div className="badge-in-image-section">
-            <p>Badge-In Image</p>
-          </div>
-        )}
-
-        {step === 2 && (
-          <ul className="meta-section">
-            <p>Meta Data Section</p>
-            <li>ProductName: {issueData.productName}</li>
-            <li>ProductUPC: {issueData.productUPC}</li>
-            <li>Store: {issueData.storeName}</li>
-            <li>Reviewer's Name: {issueData.reviewerName}</li>
-          </ul>
-        )}
-
-        <div className="review-buttons">
+        <div className={`review-buttons ${step === 0 ? "first-step" : ""}`}>
           {(step === 1 || step === 2) && (
             <button onClick={handleBack}>Back</button>
           )}

@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import POGReview from "./POGReview";
 import { usePogStore } from "../store/pogStore";
+import { useCartStore } from "../store/cartStore";
 
 const POGIssue: React.FC = () => {
   const clickedCell = usePogStore((state) => state.clickedCell);
   const issueData = usePogStore((state) => state.issueData);
+  const cartItems = useCartStore();
   const updateIssueData = usePogStore((state) => state.updateIssueData);
   const [preview, setPreview] = useState<string | null>(null);
+  const [showReview, setShowReview] = useState(false); // control panel visibility
 
   const handlePOGIssue = async () => {
     if (!clickedCell) return;
@@ -15,13 +18,12 @@ const POGIssue: React.FC = () => {
     const planoDiv = document.querySelector<HTMLDivElement>(".plano");
     if (!planoDiv) return;
 
-    // hide overlay temporarily
     const overlay = document.querySelector<HTMLElement>(".overlay");
     const oldDisplay = overlay?.style.display;
     if (overlay) overlay.style.display = "none";
 
     try {
-      await new Promise(requestAnimationFrame); // wait for DOM update
+      await new Promise(requestAnimationFrame);
       const canvas = await html2canvas(planoDiv);
       const ctx = canvas.getContext("2d");
 
@@ -42,12 +44,19 @@ const POGIssue: React.FC = () => {
       const imgURL = canvas.toDataURL("image/png");
       setPreview(imgURL);
 
-      //update some of the issue data
+      // update issue data
       updateIssueData({
         planogramImage: imgURL,
         productName: clickedCell.productName,
         productUPC: clickedCell.productUPC,
+        cartItems: cartItems.cartItems.map((item) => ({
+          upc: item.upc,
+          name: item.name,
+          quantity: item.quantity,
+        })),
       });
+
+      setShowReview(true); // open panel only after clicking the button
     } finally {
       if (overlay && oldDisplay !== undefined)
         overlay.style.display = oldDisplay;
@@ -59,8 +68,11 @@ const POGIssue: React.FC = () => {
       <button onClick={handlePOGIssue} disabled={!clickedCell}>
         POG Issue
       </button>
-      {/* pop up the review component */}
-      {issueData && <POGReview />}
+
+      {/* Render review panel only when showReview is true */}
+      {showReview && issueData && (
+        <POGReview onClose={() => setShowReview(false)} />
+      )}
     </div>
   );
 };
