@@ -8,7 +8,7 @@
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white">
     <img alt="html2canvas" src="https://img.shields.io/badge/html2canvas-FF6A00?style=flat&logo=html5&logoColor=white">
     <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg">
-    <a href="https://opensource.org/licenses/MIT">
+    <a href="[https://myusername.github.io/myproject/](https://gunshycs.github.io/pog-mock/)" target="_blank">
         <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
     </a>
 </div>
