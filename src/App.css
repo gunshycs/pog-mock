@@ -1,10 +1,10 @@
+/* ==================================================
+   APP CONTAINER
+   ================================================== */
 .App {
   text-align: center;
   overflow-y: hidden; /* prevent scrollbars from appearing */
 }
-
-
-
 
 .super-container {
   display: flex;
@@ -16,16 +16,9 @@
   font-size: calc(10px + 2vmin);
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  color: white;
-}
-
-p {
-  margin: 0px;
-
-}
-
+/* ==================================================
+   HEADER
+   ================================================== */
 .header {
   width: 100%;
   height: auto;
@@ -36,6 +29,21 @@ p {
   margin-bottom: 20px;
 }
 
+.header h1 {
+  font-size: 2.5rem;
+  color: white;
+}
+
+/* ==================================================
+   TEXT STYLING
+   ================================================== */
+p {
+  margin: 0px;
+}
+
+/* ==================================================
+   PLANOGRAM CONTAINER
+   ================================================== */
 .plano {
   position: relative;
   width: 30%;
@@ -52,6 +60,9 @@ p {
   overflow: hidden; /* prevent overlay from spilling outside */
 }
 
+/* ==================================================
+   DATA TABLE
+   ================================================== */
 .data-table {
   width: 100%;
   height: 100%;
@@ -79,6 +90,9 @@ p {
   background-color: rgba(255, 255, 255, 0.329);
 }
 
+/* ==================================================
+   OVERLAY
+   ================================================== */
 .overlay {
   position: absolute;
   top: 0;
@@ -95,7 +109,6 @@ p {
   z-index: 10; /* on top of planogram */
 }
 
-/* When active, slide over */
 .overlay.active {
   left: 0;
 }
@@ -108,6 +121,29 @@ p {
   color: black;
 }
 
+/* ==================================================
+   OVERLAY HEADER / PRODUCT INFO
+   ================================================== */
+.overlay-header-info {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.product-info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: black;
+  padding: 50px;
+  margin: 10px;
+}
+
+/* ==================================================
+   BUTTON STYLING
+   ================================================== */
 .overlay button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -115,6 +151,45 @@ p {
   cursor: pointer;
 }
 
+/* Arrow buttons */
+.btn-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.btn-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Pill buttons */
+.pill-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.pill-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* ==================================================
+   IMAGES
+   ================================================== */
 .cell-image {
   width: 50%;
   height: 50%;

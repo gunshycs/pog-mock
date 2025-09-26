@@ -1,3 +1,6 @@
+/* ==================================================
+   SIDE PANEL - Main container
+   ================================================== */
 .side-panel {
   position: fixed;
   top: 0;
@@ -15,12 +18,16 @@
   box-sizing: border-box;
 }
 
+/* Remove default list styling */
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* ==================================================
+   PANEL HEADER
+   ================================================== */
 h3.panel-header {
   flex: 1; /* 1/5 of total height */
   display: flex;
@@ -30,14 +37,18 @@ h3.panel-header {
   text-align: center;
 }
 
-/* Main container for sections */
+/* ==================================================
+   MAIN CONTENT CONTAINER
+   ================================================== */
 .cart-content {
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
 }
 
-/* 2/5 height */
+/* ==================================================
+   INIT INFO / BADGE-IN SECTIONS (2/5 height each)
+   ================================================== */
 .init-info,
 .badge-in-images {
   flex: 2;
@@ -48,7 +59,7 @@ h3.panel-header {
   gap: 10px;
 }
 
-/* init-info row items */
+/* INIT INFO row items */
 .init-info {
   display: flex;
   justify-content: center;
@@ -68,12 +79,15 @@ h3.panel-header {
   text-align: center;
 }
 
-/* badge list styling */
+/* ==================================================
+   BADGE-IN IMAGES
+   ================================================== */
 .badge-in-images {
   padding: 5px 10px 20px 10px;
   background-color: rgb(6, 6, 30);
   border-radius: 3%;
 }
+
 .badge-list {
   display: flex;
   flex-wrap: wrap;
@@ -82,7 +96,6 @@ h3.panel-header {
   gap: 10px;
 }
 
-/* badge image sizing */
 .badge-image-cart {
   width: 10rem;
   height: 10rem;
@@ -91,7 +104,9 @@ h3.panel-header {
   display: block;
 }
 
-/* cart section - remaining 2/5 */
+/* ==================================================
+   CART SECTION (remaining 2/5)
+   ================================================== */
 .cart {
   background-color: rgb(6, 6, 30);
   flex: 2;
@@ -105,16 +120,18 @@ h3.panel-header {
   border-radius: 3%;
 }
 
-
+/* Custom scrollbar for cart */
 .cart::-webkit-scrollbar {
   width: 5px;
 }
+
 .cart::-webkit-scrollbar-thumb {
   background-color: rgba(166, 179, 206, 0.3);
   border-radius: 4px;
 }
+
 .cart::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(166, 179, 206, 0.466); /* hover effect */
+  background-color: rgba(166, 179, 206, 0.466);
 }
 
 .cart h4 {
@@ -137,4 +154,57 @@ h3.panel-header {
 
 .cart button {
   margin-left: auto;
+}
+
+/* ==================================================
+   CLEAR CART BUTTON
+   ================================================== */
+.pill-btn-clear {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.pill-btn-clear:hover {
+  background-color: #c0392b;
+}
+
+/* ==================================================
+   REMOVE ITEM BUTTON
+   ================================================== */
+.circle-btn-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+
+.circle-btn-remove:hover {
+  background-color: #2980b9;
+}
+
+/* ==================================================
+   OPTIONAL: CART ITEM ROW
+   ================================================== */
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
 }

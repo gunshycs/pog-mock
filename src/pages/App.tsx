@@ -1,6 +1,5 @@
 // src/pages/App.tsx
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../App.css";
 import DataTable from "../components/DataTable";
 import POGIssue from "../components/POGIssue";
@@ -13,15 +12,13 @@ const App: React.FC = () => {
   const setClickedCell = usePogStore((state) => state.setClickedCell);
   const issueData = usePogStore((state) => state.issueData);
   const updateIssueData = usePogStore((state) => state.updateIssueData);
-  const handleBack = () => setClickedCell(null);
   const { addItem } = useCartStore();
 
-  // const storeNames = ["Tulane", "T-Mobile", "Truist"];
-  // const reviewerNames = ["John", "Stephany", "Daryl"];
+  const handleBack = () => setClickedCell(null);
+
   const storeName = "Tulane";
   const reviewerName = "John";
 
-  //generate random session id
   const generateSessionId = (): string => {
     let id = "";
     for (let i = 0; i < 17; i++) {
@@ -51,34 +48,44 @@ const App: React.FC = () => {
         <div className="plano">
           <DataTable rows={4} cols={5} />
 
-          {/* Overlay for clicked cell info */}
           {clickedCell && (
             <div className="overlay active">
               <div className="overlay-content">
-                <h2>{clickedCell.productName}</h2>
-                <h3>UPC: {clickedCell.productUPC}</h3>
-                <p>
-                  Row: {clickedCell.row + 1}, Col: {clickedCell.col + 1}
-                </p>
+                <div className="overlay-header-info">
+                  <button onClick={handleBack} className="btn-arrow">
+                    <i className="bi bi-arrow-left"></i>
+                  </button>
+                  </div>
+                  <div className="product-info-column">
+                    <h2>{clickedCell.productName}</h2>
+                    <h3>UPC: {clickedCell.productUPC}</h3>
+                    <p>
+                      Row: {clickedCell.row + 1}, Col: {clickedCell.col + 1}
+                    </p>
+                </div>
                 <img
                   src={clickedCell.image}
                   alt="Clicked Product"
                   className="overlay-image"
                 />
-                <button
-                  onClick={() =>
-                    addItem({
-                      upc: clickedCell.productUPC,
-                      name: clickedCell.productName,
-                    })
-                  }
-                >
-                  Add item
-                </button>
-                <button onClick={handleBack}>Back</button>
 
-                {/* POG Issue button */}
-                <POGIssue />
+                <div className="overlay-buttons">
+                  {/* Add Item */}
+                  <button
+                    className="pill-btn"
+                    onClick={() =>
+                      addItem({
+                        upc: clickedCell.productUPC,
+                        name: clickedCell.productName,
+                      })
+                    }
+                  >
+                    Add Item
+                  </button>
+
+                  {/* POG Issue */}
+                  <POGIssue />
+                </div>
               </div>
               <div className="overlay-bg" onClick={handleBack} />
             </div>

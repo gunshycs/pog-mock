@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../pogReview.css";
 import { usePogStore } from "../store/pogStore";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 interface POGReviewProps {
   onClose?: () => void; // called when panel closes
@@ -49,12 +50,15 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
       className={`pog-review-panel ${isOpen ? "open" : ""}`}
       onTransitionEnd={handleTransitionEnd}
     >
-      <button className="close-btn" onClick={handleClose}>
-        ✕
+      <div className="pog-review-header">
+
+      </div>
+      <button onClick={handleClose} className="btn btn-arrow">
+        <i className="bi bi-arrow-left"></i>
       </button>
+        <h4 className="panel-header">POG Issue Review</h4>
 
       <div className="pog-review-panel-items">
-        <h4 className="panel-header">POG Issue Review</h4>
 
         <div className="step-content">
           {step === 0 && (
@@ -103,28 +107,36 @@ const POGReview: React.FC<POGReviewProps> = ({ onClose }) => {
               <p>Current Cart:</p>
               <li>
                 {issueData.cartItems.length === 0 ? (
-                <p>No items in cart</p>
-              ) : (
-                <ul>
-                  {issueData.cartItems.map((item) => (
-                    <li key={item.upc}>
-                      {item.name} {item.quantity && `x${item.quantity}`}
-                    </li>
-                  ))}
-                </ul>
+                  <p>No items in cart</p>
+                ) : (
+                  <ul>
+                    {issueData.cartItems.map((item) => (
+                      <li key={item.upc}>
+                        {item.name} {item.quantity && `x${item.quantity}`}
+                      </li>
+                    ))}
+                  </ul>
                 )}
-                </li>
+              </li>
             </ul>
           )}
         </div>
 
         <div className={`review-buttons ${step === 0 ? "first-step" : ""}`}>
           {(step === 1 || step === 2) && (
-            <button onClick={handleBack}>Back</button>
+            <button onClick={handleBack} className="btn btn-arrow">
+              <i className="bi bi-arrow-left"></i>
+            </button>
           )}
-          {step < 2 && <button onClick={handleNext}>Next</button>}
+          {step < 2 && (
+            <button onClick={handleNext} className="btn btn-arrow">
+              <i className="bi bi-arrow-right"></i>
+            </button>
+          )}
           {step === 2 && (
-            <button onClick={handleConfirm}>Confirm & Save</button>
+            <button onClick={handleConfirm} className="btn btn-success">
+              <i className="bi bi-check-lg"></i> Confirm & Save
+            </button>
           )}
         </div>
       </div>

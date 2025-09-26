@@ -65,8 +65,13 @@ const POGIssue: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handlePOGIssue} disabled={!clickedCell}>
-        POG Issue
+      <button
+        onClick={handlePOGIssue}
+        disabled={!clickedCell}
+        className="pill-btn"
+        style={{ display: "flex", alignItems: "center", gap: "5px" }}
+      >
+        <i className="bi bi-journal-check"></i> POG Issue
       </button>
 
       {/* Render review panel only when showReview is true */}

@@ -22,7 +22,7 @@ interface CartItemData {
   quantity?: number;
 }
 
-interface IssueData {
+export interface IssueData {
   sessionId: string;
   planogramImage: string;
   badgeInImages: string[];
