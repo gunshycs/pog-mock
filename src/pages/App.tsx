@@ -8,8 +8,13 @@ import { usePogStore } from "../store/pogStore";
 const App: React.FC = () => {
   const clickedCell = usePogStore((state) => state.clickedCell);
   const setClickedCell = usePogStore((state) => state.setClickedCell);
-
+  const issueData = usePogStore((state) => state.issueData);
   const handleBack = () => setClickedCell(null);
+
+  const storeNames = ["Tulane", "T-Mobile", "Truist"];
+  const reviewerNames = ["John", "Stephany", "Daryl"];
+
+
 
   return (
     <div className="super-container">
@@ -24,7 +29,8 @@ const App: React.FC = () => {
         {clickedCell && (
           <div className="overlay active">
             <div className="overlay-content">
-              <h2>Cell Clicked!</h2>
+              <h2>{clickedCell.productName}</h2>
+              <h3>UPC: {clickedCell.productUPC}</h3>
               <p>
                 Row: {clickedCell.row + 1}, Col: {clickedCell.col + 1}
               </p>

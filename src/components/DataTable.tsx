@@ -6,6 +6,20 @@ import product3 from "../products/product3.png";
 
 const images = [product1, product2, product3];
 
+
+interface Product {
+  image: string;
+  name: string;
+  upc: string;
+}
+
+const products: Product[] = [
+  { image: product1, name: "Hot Cheetoes", upc: "123456789012" },
+  { image: product2, name: "Lays Lime", upc: "234567890123" },
+  { image: product3, name: "Fritos Original", upc: "345678901234" },
+];
+
+
 interface DataTableProps {
   rows: number;
   cols: number;
@@ -21,8 +35,8 @@ const DataTable: React.FC<DataTableProps> = ({ rows, cols }) => {
         {Array.from({ length: rows }).map((_, rowIndex) => (
           <tr key={rowIndex}>
             {Array.from({ length: cols }).map((_, colIndex) => {
-              const imgIndex = (rowIndex * cols + colIndex) % images.length;
-              const imgSrc = images[imgIndex];
+              const productIndex = (rowIndex * cols + colIndex) % products.length;
+              const product = products[productIndex];
 
               return (
                 <td
@@ -35,19 +49,21 @@ const DataTable: React.FC<DataTableProps> = ({ rows, cols }) => {
                     setClickedCell({
                       row: rowIndex,
                       col: colIndex,
-                      image: imgSrc,
+                      image: product.image,
                       rect: {
                         x: rect.left,
                         y: rect.top,
                         width: rect.width,
                         height: rect.height,
                       },
+                      productName: product.name,
+                      productUPC: product.upc,
                     });
                   }}
                 >
                   <img
-                    src={imgSrc}
-                    alt={`Product ${imgIndex + 1}`}
+                    src={product.image}
+                    alt={product.name}
                     className="cell-image"
                   />
                 </td>
